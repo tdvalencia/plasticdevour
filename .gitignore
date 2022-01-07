@@ -1,0 +1,26 @@
+# Root directory files
+data/
+env/
+models/
+
+# openvino directories
+workspace/openvino/mob/checkpoint
+workspace/openvino/mob/saved_model
+workspace/openvino/mob/pipeline.config
+
+# trshbt directories
+workspace/trshbt/images/train
+workspace/trshbt/images/test
+workspace/trshbt/pre-trained
+
+# Scripts & other files
+*.sh
+
+*.jpg
+!IMG_2208.jpg
+*.xml
+
+*.record
+*.csv
+
+!model.xml
