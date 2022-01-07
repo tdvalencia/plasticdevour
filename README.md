@@ -1,3 +1,3 @@
 # Trashboat
 
-[tutorial link](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html)
+MobileNet v2 640x640 object detection model trained to see plastic bottles and optimized for usage on a Raspberry Pi.
