@@ -8,10 +8,26 @@ workspace/openvino/mob/checkpoint
 workspace/openvino/mob/saved_model
 workspace/openvino/mob/pipeline.config
 
-# trshbt directories
-workspace/trshbt/images/train
-workspace/trshbt/images/test
-workspace/trshbt/pre-trained
+# tensorflow directories
+workspace/tensorflow/images/train
+workspace/tensorflow/images/test
+workspace/tensorflow/pre-trained
+
+# cmake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# cpp dev
+*.o
 
 # Scripts & other files
 *.sh
