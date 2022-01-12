@@ -5,5 +5,5 @@ find_package(ngraph REQUIRED)
 find_package(InferenceEngine REQUIRED)
 find_package(OpenCV REQUIRED)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/gpio.cpp src/img.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${InferenceEngine_LIBRARIES} ${OpenCV_LIBS} ${NGRAPH_LIBRARIES} wiringPi)

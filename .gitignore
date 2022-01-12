@@ -13,6 +13,9 @@ workspace/tensorflow/images/train
 workspace/tensorflow/images/test
 workspace/tensorflow/pre-trained
 
+# trshbt directories
+workspace/trshbt/see-trash-data
+
 # cmake
 CMakeLists.txt.user
 CMakeCache.txt
@@ -40,3 +43,6 @@ _deps
 *.csv
 
 !model.xml
+
+# exe
+trshbt
