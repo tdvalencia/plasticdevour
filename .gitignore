@@ -14,23 +14,7 @@ workspace/tensorflow/images/test
 workspace/tensorflow/pre-trained
 
 # trshbt directories
-workspace/trshbt/see-trash-data
-
-# cmake
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
-
-# cpp dev
-*.o
+workspace/data
 
 # Scripts & other files
 *.sh
@@ -43,6 +27,3 @@ _deps
 *.csv
 
 !model.xml
-
-# exe
-trshbt
