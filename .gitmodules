@@ -1,9 +1,0 @@
-[submodule "workspace/data"]
-	path = workspace/data
-	url = https://github.com/theTonyVal/trshbt-data.git
-[submodule "workspace/detect/lib/omz"]
-	path = "workspace/detect/lib/omz"
-	url = https://github.com/openvinotoolkit/open_model_zoo.git
-[submodule "workspace/detect/lib/openvino"]
-	path = "workspace/detect/lib/openvino"
-	url = https://github.com/openvinotoolkit/openvino.git
