@@ -13,11 +13,14 @@ workspace/tensorflow/images/train
 workspace/tensorflow/images/test
 workspace/tensorflow/pre-trained
 
-# trshbt directories
+# detect directories
 workspace/data
+workspace/detect/bin
 
 # Scripts & other files
 *.sh
+
+*.o
 
 *.jpg
 !IMG_2208.jpg
