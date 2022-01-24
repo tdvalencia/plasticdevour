@@ -1,14 +1,18 @@
+/* 
+	Headless Bottle Detector used for quicker
+	speeds on robot.
+*/
+
 #include <string>
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 #include <opencv2/dnn.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
 
 #include "gpio.h"
-
-/* Headless Bottle Detector */
 
 using namespace std;
 using namespace cv;
