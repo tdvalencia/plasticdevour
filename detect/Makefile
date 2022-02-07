@@ -1,13 +1,15 @@
 CC = g++
 
-CFLAGS = -std=c++11 -O3 -g -Wall -Wextra
-CFLAGS += -Ilib/opencv/include -Isrc/gpio
+CFLAGS = -O3 -g -Wall -Wextra
+CFLAGS += -Ilib/opencv/include -Isrc/gpio -Ilib/Config -Ilib/MotorDriver -Ilib/PCA9685
 
-LDFLAGS = -L./lib/opencv/lib -lopencv_core -lopencv_imgproc -lopencv_dnn -lopencv_videoio
-LDFLAGS += -lm -ldl -lpthread -lwiringPi
+LDFLAGS = -L./lib/opencv/lib -lopencv_core -lopencv_imgproc -lopencv_dnn -lopencv_videoio -lopencv_highgui
+LDFLAGS += -ldl -lpthread -lwiringPi -lm
 
-SRC  = $(wildcard src/*.cpp) $(wildcard src/**/*.cpp)
-OBJ  = $(SRC:.cpp=.o)
+CPPFILES  = $(wildcard src/*.cpp)
+CFILES	  = $(wildcard lib/**/*.c) $(wildcard src/**/*.c)
+
+OBJ  = $(CPPFILES:.cpp=.o) $(CFILES:.c=.o)
 BIN = bin
 
 .PHONY: all clean
@@ -26,6 +28,9 @@ test: $(OBJ)
 
 %.o: %.cpp
 	$(CC) -o $@ -c $< $(CFLAGS)
+
+%.o: %.c
+	$(CC) -o $@ -c $< -D USE_WIRINGPI_LIB $(CFLAGS) -fpermissive $(LDFLAGS)
 
 clean:
 	rm -rf $(BIN) $(OBJ)
