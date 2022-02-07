@@ -10,21 +10,23 @@ CPPFILES  = $(wildcard src/*.cpp)
 CFILES	  = $(wildcard lib/**/*.c) $(wildcard src/**/*.c)
 
 OBJ  = $(CPPFILES:.cpp=.o) $(CFILES:.c=.o)
+
 BIN = bin
+EXE = plstc_rm
 
 .PHONY: all clean
 
-all: dirs test
+all: dirs $(EXE)
 
 dirs:
 	mkdir -p ./$(BIN)
 	cp -r mob bin/
 
 run: all
-	$(BIN)/test
+	$(BIN)/$(EXE)
 
-test: $(OBJ)
-	$(CC) -o $(BIN)/test $^ $(LDFLAGS)
+$(EXE): $(OBJ)
+	$(CC) -o $(BIN)/$(EXE) $^ $(LDFLAGS)
 
 %.o: %.cpp
 	$(CC) -o $@ -c $< $(CFLAGS)

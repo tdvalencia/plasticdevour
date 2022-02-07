@@ -23,6 +23,12 @@
 #include <chrono>
 #include <thread>
 
+/* Change Values */
+
+#define fn "output.csv"
+#define conf_threshold 0.1
+#define waitTime 2
+
 using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
@@ -35,8 +41,6 @@ const string labels = "mob/labels.txt";
 const string model = "mob/model.xml";
 const string weights = "mob/model.bin";
 
-const int waitTime = 2;
-const float conf_threshold = 0.5;
 float confidence;
 
 void Handler(int signo) {
@@ -44,13 +48,13 @@ void Handler(int signo) {
     printf("\r\nHandler: Motor Stop\r\n");
     Motor_Stop(MOTORA);
     DEV_ModuleExit();
-
-    exit(0);
+	
+	exit(0);
 }
 
 int main() {
 	
-	double latency;
+	double freq, latency;
 	vector<double> layerTimes;
 
 	int deviceID = 0;
@@ -60,10 +64,10 @@ int main() {
 
 	/* Init GPIO - function speaks for itself */
 
-	//if (DEV_ModuleInit()) {
-	// 	return 1;
-	//}
-	//Motor_Init();
+	if (DEV_ModuleInit()) {
+	 	return 1;
+	}
+	Motor_Init();
 
 	/* ML network variables */
 
@@ -77,9 +81,9 @@ int main() {
 
 	cout << "Detection loop is initializing." << endl;
 
-	freopen("output.csv", "w", stdout);
+	freopen(fn, "w", stdout);
 	cout << "confidence,latency" << endl;
-	// signal(SIGINT, Handler);
+	signal(SIGINT, Handler);
 	while(1) {
 		cap.read(frame);
 
@@ -92,18 +96,16 @@ int main() {
 		for (int i = 0; i < matrix.rows; i++) {
 			confidence = matrix.at<float>(i, 2);
 			if (confidence < conf_threshold) {
-				//sleep_until(system_clock::now() + seconds(waitTime));
-				//Motor_Stop(MOTORA);
+				sleep_until(system_clock::now() + seconds(waitTime));
+				Motor_Stop(MOTORA);
 				continue;
 			}
-			//Motor_Run(MOTORA, BACKWARD, 100);
-			latency = net.getPerfProfile(layerTimes) / getTickFrequency() / 1000.0;
-			cout << confidence << "," << latency << time(0) << endl;
+			Motor_Run(MOTORA, BACKWARD, 100);
+			freq = getTickFrequency() / 1000.0;
+			latency = net.getPerfProfile(layerTimes) / freq;
+			cout << confidence << "," << latency << endl;
 		}
-		//int key = waitKey(10);
-		//if((char)key == 'c') { break; }
 	}
-	//Motor_Stop(MOTORA);
-	//DEV_ModuleExit();
+	cap.release();
 	return 0;
 }
